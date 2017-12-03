@@ -54,7 +54,7 @@ public class Connect {
      * @param Result
      * @return
      */
-    public JSONObject getAllUsersName(String Result) {
+    public JSONObject getAllUsersName(JSONObject Result) {
         jsonObject.put("feedback",Result );
         jsonObject.put("operation","getAllUsersName" );
         return jsonObject;

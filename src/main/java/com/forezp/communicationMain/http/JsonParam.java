@@ -1,7 +1,6 @@
 package com.forezp.communicationMain.http;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.forezp.communicationMain.database.DataBaseHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +34,11 @@ public class JsonParam {
             return new Connect().RegisterResponse(dataBaseHelper.RegistrDB(
                     req.getParameter("username"), req.getParameter("password")
             ));
-        } else if (str.equals("/communication/getAllUsersName")) { // 获取用户
-            return new Connect().getAllUsersName("");
+        } else if (str.equals("/communication/getAllUsersName")) { // 获取好友列表
+//            return new Connect().getAllUsersName("");
+            return new Connect().getAllUsersName(dataBaseHelper.FriendsDB(
+                    req.getParameter("username")
+            ));
         } else if (str.equals("/communication/notice")) { // 消息
             return new Connect().NoticeResponse("");
         } else if (str.equals("/communication/logout")) { // 注销

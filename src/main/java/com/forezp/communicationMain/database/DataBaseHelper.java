@@ -73,4 +73,14 @@ public class DataBaseHelper extends MySqlSentence {
         return "NO";
     }
 
+    /**
+     * 获取好友列表
+     *
+     * @param username  账号
+     * @return JSONObject
+     */
+    public JSONObject FriendsDB(String username) {
+        return dbHelper.query(FRIENDSDB, new Object[]{username}); // 查询该账号下的所有好友列表
+    }
+
 }

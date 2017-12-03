@@ -27,7 +27,18 @@ public class DBHelper {
     }
 
     /**
-     * 增、删、改类方法
+     * 增加类方法
+     * @param sql SQL语句
+     * @param object 所需条件的参数
+     * @return 数字格式
+     */
+    public int adddate (String sql, Object[] object) {
+        int i = jdbcTemplate.update(sql, object);
+        return i;
+    }
+
+    /**
+     * 删、改类方法
      * @param sql SQL语句
      * @param object 所需条件的参数
      * @return 数字格式

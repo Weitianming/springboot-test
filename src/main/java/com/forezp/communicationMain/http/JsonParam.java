@@ -28,7 +28,11 @@ public class JsonParam {
 
         if (str.equals("/communication/login")) { // 登录请求
             return new Connect().LoginResponse(dataBaseHelper.LoginDB(
-                    req.getParameter("username"), req.getParameter("password")
+                    req.getParameter("username"), req.getParameter("password"), Boolean.parseBoolean(req.getParameter("isRemember")),req.getParameter("macAddress")
+            ));
+        }else if (str.equals("/communication/automaticLogin")){ // 记住密码
+            return new Connect().AutomaticLoginResponse(dataBaseHelper.LoginDB(
+                    req.getParameter("username"), req.getParameter("password"), Boolean.parseBoolean(req.getParameter("isRemember")),req.getParameter("macAddress")
             ));
         } else if (str.equals("/communication/register")) { // 注册请求
             return new Connect().RegisterResponse(dataBaseHelper.RegistrDB(

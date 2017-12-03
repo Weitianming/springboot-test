@@ -31,6 +31,25 @@ public class Connect {
     }
 
     /**
+     * 反馈记住密码登录信息
+     * @param Result
+     * @return
+     */
+    public JSONObject AutomaticLoginResponse(String Result) {
+        jsonObject.put("feedback",Result );
+        jsonObject.put("operation","LoginResponse" );
+        if (Result == "OK") {
+            message = "登录成功";
+        } else if (Result == "NOPassword") {
+            message = "密码错误";
+        } else {
+            message = "账号未注册";
+        }
+        jsonObject.put("message",message);
+        return jsonObject;
+    }
+
+    /**
      * 反馈注册信息
      * @param Result
      * @return

@@ -41,11 +41,15 @@ public class DataBaseHelper extends MySqlSentence {
      * @param password 密码
      * @return String
      */
-    public String LoginDB(String username, String password) {
+    public String LoginDB(String username, String password, boolean isRemember, String macAddress) {
         if (RegistrQuery(username)) { // 该账号是否存在
             json = dbHelper.query(LOGINDB, new Object[]{username,password}); // 查询密码是否正确
             List li = (List) json.get("object");
             if (li.size() > 0) {
+                if (isRemember) {
+//                    in = dbHelper.adddate(AUTOMATICLOGIN, new Object[]{username, password}); // 添加Mac地址绑定账号密码
+                    System.out.println(macAddress);
+                }
                 return "OK";
             } else {
                 return "NOPassword";
@@ -63,7 +67,7 @@ public class DataBaseHelper extends MySqlSentence {
      */
     public String RegistrDB(String username, String password) {
         if (!RegistrQuery(username)) { // 该账号是否存在
-            in = dbHelper.update(REGISTRDB,  new Object[]{username,password}); // 查询密码是否正确
+            in = dbHelper.adddate(REGISTRDB, new Object[]{username, password}); // 添加账号密码
             if (in > 0) {
                 return "OK";
             } else {
